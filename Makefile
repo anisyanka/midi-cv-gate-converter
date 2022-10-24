@@ -46,7 +46,8 @@ Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c \
-Core/system_stm32f1xx.c  
+Core/system_stm32f1xx.c \
+Libraries/mcp4822/mcp48x2.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -95,7 +96,8 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32F103xB
+-DSTM32F103xB \
+-DDAC_TYPE_MCP4822 \
 
 
 # AS includes
@@ -107,7 +109,8 @@ C_INCLUDES =  \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -ILibraries/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include \
--ILibraries/STM32CubeF1/Drivers/CMSIS/Include
+-ILibraries/STM32CubeF1/Drivers/CMSIS/Include \
+-ILibraries/mcp4822/
 
 
 # compile gcc flags

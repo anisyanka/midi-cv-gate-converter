@@ -1,3 +1,6 @@
 [submodule "Libraries/STM32CubeF1"]
 	path = Libraries/STM32CubeF1
 	url = https://github.com/STMicroelectronics/STM32CubeF1.git
+[submodule "Libraries/mcp4822"]
+	path = Libraries/mcp4822
+	url = git@github.com:anisyanka/mcp48x2.git
