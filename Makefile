@@ -28,6 +28,7 @@ C_SOURCES =  \
 Core/main.c \
 Core/stm32f1xx_it.c \
 Core/stm32f1xx_hal_msp.c \
+Core/init.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c \
