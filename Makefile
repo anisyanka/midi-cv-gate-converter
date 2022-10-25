@@ -29,6 +29,7 @@ Core/main.c \
 Core/stm32f1xx_it.c \
 Core/stm32f1xx_hal_msp.c \
 Core/init.c \
+Core/midi/midi_cv_adapter.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c \
@@ -107,6 +108,7 @@ AS_INCLUDES =
 # C includes
 C_INCLUDES =  \
 -ICore \
+-ICore/midi \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -ILibraries/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include \

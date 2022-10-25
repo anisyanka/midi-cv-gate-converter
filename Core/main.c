@@ -1,6 +1,8 @@
 #include "main.h"
 #include "init.h"
 
+#include "midi_cv_adapter.h"
+
 extern ADC_HandleTypeDef hadc1;
 extern I2C_HandleTypeDef hi2c2;
 extern SPI_HandleTypeDef hspi1;
@@ -20,6 +22,9 @@ int main(void)
 	USART1_UART_Init();
 	ADC1_Init();
 	I2C2_Init();
+
+	/* Initialize CV output channels */
+	midi_cv_init();
 
 	/* Infinite loop */
 	while (1)
