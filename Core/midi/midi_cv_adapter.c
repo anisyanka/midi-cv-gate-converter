@@ -54,12 +54,6 @@ static mcp48x2_ret_t spi_write_packet(uint16_t data)
 	ret = HAL_SPI_Transmit(&hspi1, temp, 2, 100);
 	if (ret != HAL_OK)
 	{
-		while (1)
-		{
-			HAL_GPIO_TogglePin(GPIOB, GATE_OUT3_Pin);
-			HAL_Delay(100);	
-		}
-		
 		return MCP48X2_FAIL;
 	}
 
