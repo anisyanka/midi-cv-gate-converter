@@ -14,3 +14,8 @@ Also check the homepages for these packages:
 
 For Linux use `apt` package manager.
 These packages are going to be used to build and flash ther firmware for STM32F103C8T6.
+
+### Base knowledge
+1. [MIDI Wiki](https://en.wikipedia.org/wiki/MIDI)
+2. [MIDI Specifications](https://www.midi.org/specifications)
+3. [MIDIOX](http://www.midiox.com/)
