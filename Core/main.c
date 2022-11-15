@@ -2,11 +2,11 @@
 #include "init.h"
 
 #include "midi_cv_adapter.h"
+#include "midi_dispatcher.h"
 
 extern ADC_HandleTypeDef hadc1;
 extern I2C_HandleTypeDef hi2c2;
 extern SPI_HandleTypeDef hspi1;
-extern UART_HandleTypeDef huart1;
 
 int main(void)
 {
@@ -26,9 +26,21 @@ int main(void)
 	/* Initialize CV output channels */
 	midi_cv_init();
 
+	/* Start UART receiver */
+	midi_start_listener();
+
 	/* Infinite loop */
 	while (1)
 	{
+		midi_process();
+	}
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == USART1)
+	{
+		midi_handle_byte();
 	}
 }
 
