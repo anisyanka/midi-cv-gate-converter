@@ -93,4 +93,30 @@ void midi_cv_init(void)
 	/* Pass low level functions to the DAC library */
 	mcp48x2_default_init(&dac1_dev, &dac1_ll);
 	mcp48x2_default_init(&dac2_dev, &dac2_ll);
+
+	mcp48x2_set_channel_gain(&dac1_dev, MCP48X2_DAC_CH_A, MCP48X2_GAIN_1X);
+	mcp48x2_set_channel_gain(&dac1_dev, MCP48X2_DAC_CH_B, MCP48X2_GAIN_1X);
+
+	mcp48x2_set_channel_gain(&dac2_dev, MCP48X2_DAC_CH_A, MCP48X2_GAIN_1X);
+	mcp48x2_set_channel_gain(&dac2_dev, MCP48X2_DAC_CH_B, MCP48X2_GAIN_1X);
+}
+
+void midi_cv1_set(uint16_t value)
+{
+	mcp48x2_set_channel_value(&dac1_dev, MCP48X2_DAC_CH_A, value);
+}
+
+void midi_cv2_set(uint16_t value)
+{
+	mcp48x2_set_channel_value(&dac1_dev, MCP48X2_DAC_CH_B, value);
+}
+
+void midi_cv3_set(uint16_t value)
+{
+	mcp48x2_set_channel_value(&dac2_dev, MCP48X2_DAC_CH_A, value);
+}
+
+void midi_cv4_set(uint16_t value)
+{
+	mcp48x2_set_channel_value(&dac2_dev, MCP48X2_DAC_CH_B, value);
 }
