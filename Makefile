@@ -114,7 +114,8 @@ C_INCLUDES =  \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -ILibraries/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include \
 -ILibraries/STM32CubeF1/Drivers/CMSIS/Include \
--ILibraries/mcp4822/
+-ILibraries/mcp4822 \
+-ILibraries/jsmn
 
 
 # compile gcc flags

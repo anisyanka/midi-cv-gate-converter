@@ -4,3 +4,6 @@
 [submodule "Libraries/mcp4822"]
 	path = Libraries/mcp4822
 	url = git@github.com:anisyanka/mcp48x2.git
+[submodule "Libraries/jsmn"]
+	path = Libraries/jsmn
+	url = https://github.com/zserge/jsmn
