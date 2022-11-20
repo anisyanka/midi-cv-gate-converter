@@ -39,8 +39,7 @@ enum cc_parser_state
 	WAITING_FOR_CC_VALUE,
 };
 
-static void note_on_parse(int is_new_event, uint8_t rx);
-static void note_off_parse(int is_new_event, uint8_t rx);
+static void note_on_off_parse(int is_new_event, uint8_t rx);
 static void cc_parse(int is_new_event, uint8_t rx);
 
 void midi_start_listener(void)
@@ -79,11 +78,11 @@ void midi_process(void)
 			switch (midi_type)
 			{
 				case MIDI_NOTE_ON:
-					note_on_parse(new_event_flag, rx_byte);
+					note_on_off_parse(new_event_flag, rx_byte);
 					break;
 
 				case MIDI_NOTE_OFF:
-					note_off_parse(new_event_flag, rx_byte);
+					note_on_off_parse(new_event_flag, rx_byte);
 					break;
 
 				case MIDI_POLYPH_AFTERTOUCH:
@@ -112,17 +111,72 @@ void midi_process(void)
 	}
 }
 
-static void note_on_parse(int is_new_event, uint8_t rx)
+static void note_on_off_parse(int is_new_event, uint8_t rx)
 {
+	static uint8_t note = 0;
+	static uint8_t velocity = 0;
+	static enum note_on_of_parser_state parser_state = WAITING_FOR_NOTE;
 
-}
+	static uint8_t test_buf[3];
 
-static void note_off_parse(int is_new_event, uint8_t rx)
-{
+	if (is_new_event)
+	{
+		parser_state = WAITING_FOR_NOTE;
+	}
 
+	switch (parser_state)
+	{
+		case WAITING_FOR_NOTE:
+			parser_state = WAITING_FOR_VELOCITY;
+			note = rx;
+			break;
+
+		case WAITING_FOR_VELOCITY:
+			velocity = rx;
+
+			test_buf[0] = 0x80;
+			test_buf[1] = note;
+			test_buf[2] = velocity;
+
+			HAL_UART_Transmit(&huart1, test_buf, 3, 100);
+			break;
+
+		default:
+			break;
+	}
 }
 
 static void cc_parse(int is_new_event, uint8_t rx)
 {
+	static uint8_t cc_type = 0;
+	static uint8_t cc_value = 0;
+	static enum cc_parser_state parser_state = WAITING_FOR_CC_NUMBER;
+	int temp = 0;
 
+	HAL_GPIO_TogglePin(GPIOB, GATE_OUT1_Pin);
+	if (is_new_event)
+	{
+		HAL_GPIO_TogglePin(GPIOB, GATE_OUT2_Pin);
+		parser_state = WAITING_FOR_CC_NUMBER;
+	}
+
+	switch (parser_state)
+	{
+		case WAITING_FOR_CC_NUMBER:
+			HAL_GPIO_TogglePin(GPIOB, GATE_OUT3_Pin);
+			parser_state = WAITING_FOR_CC_VALUE;
+			cc_type = rx;
+			break;
+
+		case WAITING_FOR_CC_VALUE:
+			cc_value = rx;
+			HAL_GPIO_TogglePin(GPIOB, GATE_OUT3_Pin);
+			/* call CV API */
+			temp = (cc_value * 4095) / 127;
+			midi_cv1_set((uint16_t)temp);
+			break;
+
+		default:
+			break;
+	}
 }
