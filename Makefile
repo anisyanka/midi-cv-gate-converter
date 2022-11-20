@@ -26,9 +26,10 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/main.c \
-Core/stm32f1xx_it.c \
-Core/stm32f1xx_hal_msp.c \
-Core/init.c \
+Core/hw_init/system_stm32f1xx.c \
+Core/hw_init/stm32f1xx_it.c \
+Core/hw_init/stm32f1xx_hal_msp.c \
+Core/hw_init/init.c \
 Core/midi/midi_cv_adapter.c \
 Core/midi/midi_dispatcher.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
@@ -49,7 +50,6 @@ Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
 Libraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c \
-Core/system_stm32f1xx.c \
 Libraries/mcp4822/mcp48x2.c
 
 # ASM sources
@@ -110,6 +110,7 @@ AS_INCLUDES =
 C_INCLUDES =  \
 -ICore \
 -ICore/midi \
+-ICore/hw_init \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc \
 -ILibraries/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -ILibraries/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include \

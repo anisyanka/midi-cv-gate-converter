@@ -4,10 +4,6 @@
 #include "midi_cv_adapter.h"
 #include "midi_dispatcher.h"
 
-extern ADC_HandleTypeDef hadc1;
-extern I2C_HandleTypeDef hi2c2;
-extern SPI_HandleTypeDef hspi1;
-
 int main(void)
 {
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
