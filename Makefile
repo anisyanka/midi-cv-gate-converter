@@ -26,6 +26,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/main.c \
+Core/device_config.c \
 Core/hw_init/system_stm32f1xx.c \
 Core/hw_init/stm32f1xx_it.c \
 Core/hw_init/stm32f1xx_hal_msp.c \
@@ -101,6 +102,7 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F103xB \
 -DDAC_TYPE_MCP4822 \
+-DMIDI_CV_GATE_CONVERTER_DEBUG_BOARD \
 
 
 # AS includes
